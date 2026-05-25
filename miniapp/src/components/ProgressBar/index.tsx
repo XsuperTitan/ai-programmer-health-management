@@ -5,14 +5,13 @@ interface ProgressBarProps {
   current: number
   total: number
   label?: string
-  variant?: 'default' | 'chalk'
 }
 
-export default function ProgressBar({ current, total, label, variant = 'default' }: ProgressBarProps) {
+export default function ProgressBar({ current, total, label }: ProgressBarProps) {
   const pct = total > 0 ? Math.round((current / total) * 100) : 0
 
   return (
-    <View className={`progress-bar${variant === 'chalk' ? ' progress-bar--chalk' : ''}`}>
+    <View className='progress-bar'>
       {label && (
         <View className='progress-bar__header'>
           <Text className='progress-bar__label'>{label}</Text>

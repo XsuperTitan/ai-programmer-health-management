@@ -70,10 +70,7 @@ export interface HealthSession {
   metrics: HealthMetric[]
   scores: PillarScore[]
   plan: PlanDay[]
-  selectedKeywords?: string[]
 }
-
-export type ChalkLinkType = 'sleep' | 'medication' | 'habit' | 'module'
 
 export interface ChalkMessage {
   id: string
@@ -84,15 +81,6 @@ export interface ChalkMessage {
   fontSize: number
   opacity: number
   color: ChalkColorVariant
-  highlight?: boolean
-  priority?: number
-  linkType?: ChalkLinkType
-}
-
-export interface KeywordCandidate {
-  text: string
-  priority: number
-  pillar?: PlanHabit['pillar']
 }
 
 export type ChalkPage = 'home' | 'plan'

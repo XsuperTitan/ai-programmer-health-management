@@ -6,8 +6,6 @@ import { getSession, completeQuiz, MOCK_METRICS } from '@/services/mock'
 import type { PillarScore, HealthMetric } from '@/types'
 import './index.scss'
 
-const RESULT_KEYWORDS = ['护发', '控糖', '护腰']
-
 const FLAG_LABEL: Record<string, string> = {
   low: '偏低',
   normal: '正常',
@@ -50,20 +48,6 @@ export default function ResultPage() {
 
   return (
     <View className='page result-page'>
-      <View className='result-page__keywords'>
-        {RESULT_KEYWORDS.map((kw, i) => (
-          <Text
-            key={kw}
-            className='result-page__keyword'
-            style={{
-              transform: `rotate(${[-4, 3, -2][i]}deg)`
-            }}
-          >
-            {kw}
-          </Text>
-        ))}
-      </View>
-
       <View className='result-page__summary card'>
         <Text className='result-page__summary-label'>综合健康指数</Text>
         <Text className='result-page__summary-score'>{avgScore}</Text>

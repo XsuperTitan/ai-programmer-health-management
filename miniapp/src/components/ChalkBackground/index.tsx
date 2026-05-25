@@ -14,7 +14,7 @@ export default function ChalkBackground({ messages }: ChalkBackgroundProps) {
       {messages.map(msg => (
         <Text
           key={msg.id}
-          className={`chalk-background__text chalk-background__text--${msg.color}${msg.highlight ? ' chalk-background__text--highlight' : ''}`}
+          className={`chalk-background__text chalk-background__text--${msg.color}`}
           style={{
             top: `${msg.top}%`,
             left: `${msg.left}%`,
