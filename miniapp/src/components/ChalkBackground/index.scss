@@ -8,16 +8,15 @@
   bottom: 0;
   pointer-events: none;
   z-index: 0;
-  overflow: hidden;
+  overflow: visible;
 
   &__text {
     position: absolute;
-    max-width: 72%;
+    max-width: none;
     font-family: 'Kaiti SC', 'STKaiti', 'PingFang SC', cursive;
     font-weight: 600;
     white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    overflow: visible;
     letter-spacing: 2px;
     filter: blur(0.8px);
     transform-origin: 0% 50%;

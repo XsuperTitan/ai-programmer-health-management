@@ -91,7 +91,7 @@ export interface ChalkMessage {
   color: ChalkColorVariant
 }
 
-export type ChalkPage = 'home' | 'plan'
+export type ChalkPage = 'home' | 'plan' | 'customize'
 
 export interface ProductItem {
   id: string

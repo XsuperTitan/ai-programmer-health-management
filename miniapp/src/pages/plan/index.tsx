@@ -6,7 +6,7 @@ import ProgressBar from '@/components/ProgressBar'
 import ChalkBackground from '@/components/ChalkBackground'
 import ProductRecommendSection from '@/components/ProductRecommendSection'
 import { getSession, getUser, toggleHabitComplete } from '@/services/mock'
-import { getChalkMessages } from '@/services/chalkMessages'
+import { getTabChalkMessages } from '@/services/chalkMessages'
 import { syncTabBar } from '@/utils/tabBar'
 import type { PlanDay, ChalkMessage, UserProfile } from '@/types'
 import './index.scss'
@@ -25,14 +25,14 @@ export default function PlanPage() {
   const [plan, setPlan] = useState<PlanDay[]>([])
   const [activeDay, setActiveDay] = useState(0)
   const [user, setUser] = useState<UserProfile>(getUser())
-  const [chalkMessages, setChalkMessages] = useState<ChalkMessage[]>(getChalkMessages('plan'))
+  const [chalkMessages, setChalkMessages] = useState<ChalkMessage[]>(getTabChalkMessages())
 
   useDidShow(() => {
     syncTabBar(1)
     const session = getSession()
     setUser(getUser())
     setPlan(session.plan)
-    setChalkMessages(getChalkMessages('plan'))
+    setChalkMessages(getTabChalkMessages())
   })
 
   const hasSessionPlan = plan.length > 0

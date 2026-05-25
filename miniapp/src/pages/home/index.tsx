@@ -6,7 +6,7 @@ import AlertBanner from '@/components/AlertBanner'
 import ScoreCard from '@/components/ScoreCard'
 import ChalkBackground from '@/components/ChalkBackground'
 import { getUser, getSession, getActiveAlerts } from '@/services/mock'
-import { getChalkMessages } from '@/services/chalkMessages'
+import { getTabChalkMessages } from '@/services/chalkMessages'
 import { syncTabBar } from '@/utils/tabBar'
 import type { UserProfile, HealthSession, HealthAlert, ChalkMessage } from '@/types'
 import './index.scss'
@@ -15,14 +15,14 @@ export default function HomePage() {
   const [user, setUser] = useState<UserProfile>(getUser())
   const [session, setSession] = useState<HealthSession>(getSession())
   const [alerts, setAlerts] = useState<HealthAlert[]>(getActiveAlerts())
-  const [chalkMessages, setChalkMessages] = useState<ChalkMessage[]>(getChalkMessages('home'))
+  const [chalkMessages, setChalkMessages] = useState<ChalkMessage[]>(getTabChalkMessages())
 
   useDidShow(() => {
     syncTabBar(0)
     setUser(getUser())
     setSession(getSession())
     setAlerts(getActiveAlerts())
-    setChalkMessages(getChalkMessages('home'))
+    setChalkMessages(getTabChalkMessages())
   })
 
   const hasScores = session.scores.length > 0

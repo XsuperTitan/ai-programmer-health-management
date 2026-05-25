@@ -11,6 +11,7 @@ import {
   needsPlanOverrideConfirm
 } from '@/services/mock'
 import { syncTabBar } from '@/utils/tabBar'
+import { getTabChalkMessages } from '@/services/chalkMessages'
 import type { ChalkMessage, KeywordCandidate } from '@/types'
 import './index.scss'
 
@@ -18,22 +19,10 @@ const MAX_KEYWORDS = 7
 const ERASE_MS = 300
 const FADE_MS = 200
 
-const DECOR_MESSAGES: ChalkMessage[] = [
-  {
-    id: 'customize-decor-1',
-    text: '选你的改善点',
-    top: 8,
-    left: 6,
-    rotate: -5,
-    fontSize: 26,
-    opacity: 0.28,
-    color: 'yellow'
-  }
-]
-
 export default function CustomizePage() {
   const [candidates, setCandidates] = useState<KeywordCandidate[]>([])
   const [selected, setSelected] = useState<string[]>([])
+  const [chalkMessages, setChalkMessages] = useState<ChalkMessage[]>(getTabChalkMessages())
   const [erasingText, setErasingText] = useState<string | null>(null)
   const [fadingText, setFadingText] = useState<string | null>(null)
   const [submitting, setSubmitting] = useState(false)
@@ -42,6 +31,7 @@ export default function CustomizePage() {
     syncTabBar(2)
     fetchKeywordLibrary().then(setCandidates)
     setSelected(getSelectedKeywords())
+    setChalkMessages(getTabChalkMessages())
   })
 
   const handlePoolSelect = (text: string) => {
@@ -98,7 +88,7 @@ export default function CustomizePage() {
 
   return (
     <View className='page page--chalk customize-page'>
-      <ChalkBackground messages={DECOR_MESSAGES} />
+      <ChalkBackground messages={chalkMessages} />
 
       <View className='customize-page__content'>
         <Text className='page-title'>健康关键词定制</Text>

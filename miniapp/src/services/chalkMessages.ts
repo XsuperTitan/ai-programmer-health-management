@@ -159,13 +159,13 @@ export function getKeywordCandidates(): KeywordCandidate[] {
   }))
 }
 
-export function getChalkMessages(page: ChalkPage): ChalkMessage[] {
+export function getChalkMessages(_page: ChalkPage = 'home'): ChalkMessage[] {
   const dateKey = new Date().toISOString().slice(0, 10)
-  const seed = hashSeed(`${dateKey}-${page}-${getUser().nickname}`)
+  const seed = hashSeed(`${dateKey}-tab-chalk-${getUser().nickname}`)
   const rand = seededRandom(seed)
 
   const count = 8 + Math.floor(rand() * 4)
-  const candidates = collectCandidates(page)
+  const candidates = collectCandidates('home')
   const texts = [...candidates.slice(0, count)]
   let fallbackIdx = 0
   while (texts.length < count && fallbackIdx < DEFAULT_CHALKS.length * 3) {
@@ -184,14 +184,14 @@ export function getChalkMessages(page: ChalkPage): ChalkMessage[] {
 
   return texts.map((item, i) => {
     const slot = CHALK_LAYOUT_SLOTS[slotIndices[i]]
-    const jitter = (rand() - 0.5) * 2
+    const jitter = (rand() - 0.5) * 8
     const rawTop = slot.top + jitter
     const rawLeft = slot.left + jitter
-    const rawRotate = slot.rotate + (rand() - 0.5) * 4
-    const layout = clampChalkLayout(page, rawTop, rawLeft, rawRotate, item.text, slot.fontSize)
+    const rawRotate = slot.rotate + (rand() - 0.5) * 8
+    const layout = clampChalkLayout('home', rawTop, rawLeft, rawRotate, item.text, slot.fontSize)
 
     return {
-      id: `${page}-${i}-${item.text}`,
+      id: `tab-${i}-${item.text}`,
       text: item.text,
       top: layout.top,
       left: layout.left,
@@ -201,4 +201,9 @@ export function getChalkMessages(page: ChalkPage): ChalkMessage[] {
       color: inferChalkColor(item.text, rand)
     }
   })
+}
+
+/** Tab pages share identical backboard chalk (home / plan / customize). */
+export function getTabChalkMessages(): ChalkMessage[] {
+  return getChalkMessages('home')
 }
