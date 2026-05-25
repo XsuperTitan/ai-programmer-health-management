@@ -1,0 +1,66 @@
+@import '../../styles/theme';
+
+.nav-card {
+  display: flex;
+  align-items: center;
+  padding: 28px;
+  background: $bg-card;
+  border-radius: $radius-lg;
+  margin-bottom: 16px;
+  box-shadow: $shadow-card;
+  border: 1px solid $border-light;
+
+  &__icon {
+    font-size: 44px;
+    margin-right: 20px;
+    flex-shrink: 0;
+  }
+
+  &__body {
+    flex: 1;
+    min-width: 0;
+  }
+
+  &__title-row {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 6px;
+  }
+
+  &__title {
+    font-size: 30px;
+    font-weight: 700;
+    color: $text-primary;
+  }
+
+  &__tag {
+    font-size: 20px;
+    padding: 4px 12px;
+    background: rgba(200, 240, 0, 0.15);
+    color: $lambo-green;
+    border-radius: 12px;
+    font-weight: 600;
+    border: 1px solid rgba(200, 240, 0, 0.25);
+  }
+
+  &__done {
+    font-size: 20px;
+    color: $lambo-green;
+    font-weight: 600;
+  }
+
+  &__subtitle {
+    font-size: 24px;
+    color: $text-muted;
+    line-height: 1.4;
+  }
+
+  &__arrow {
+    font-size: 40px;
+    color: $cyber-blue;
+    margin-left: 12px;
+    font-weight: 300;
+  }
+}

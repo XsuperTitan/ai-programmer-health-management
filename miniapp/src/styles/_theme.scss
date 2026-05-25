@@ -1,0 +1,56 @@
+// Lamborghini accent palette
+$lambo-orange: #ff6800;
+$lambo-orange-light: #ff8533;
+$lambo-orange-dark: #e05500;
+$lambo-green: #c8f000;
+$lambo-green-light: #dbff4d;
+$lambo-green-dark: #7a9900;
+
+// Blackboard / chalkboard surfaces
+$blackboard-deep: #1a2820;
+$blackboard-base: #243529;
+$blackboard-mid: #2a3f32;
+$blackboard-light-deep: #455a50;
+$blackboard-light-base: #526b60;
+$blackboard-light-mid: #5a756a;
+$chrome-bar-bg: #526b60;
+$chrome-bar-bg-solid: rgba(82, 107, 96, 0.97);
+$chalk-grid: rgba(255, 255, 255, 0.04);
+$chalk-grid-major: rgba(255, 255, 255, 0.085);
+$chalk-grid-light: rgba(255, 255, 255, 0.06);
+$chalk-grid-major-light: rgba(255, 255, 255, 0.11);
+$chalk-accent: #c8dcb8;
+$chalk-accent-dim: rgba(200, 220, 184, 0.14);
+$chalk-dust: rgba(230, 240, 220, 0.035);
+$chalk-dust-light: rgba(255, 255, 255, 0.05);
+
+// Legacy aliases used across components
+$cyber-bg-deep: $blackboard-deep;
+$cyber-bg-mid: $blackboard-mid;
+$cyber-blue: $chalk-accent;
+$cyber-blue-dim: $chalk-accent-dim;
+$cyber-grid: $chalk-grid;
+$cyber-grid-major: $chalk-grid-major;
+
+$bg-base: $blackboard-deep;
+$bg-elevated: rgba(36, 53, 41, 0.94);
+$bg-card: rgba(30, 45, 36, 0.88);
+$text-primary: #e8ece4;
+$text-secondary: #a8b8a4;
+$text-muted: #6a7a66;
+$text-on-brand: #1a2820;
+
+$border-subtle: rgba(255, 255, 255, 0.12);
+$border-light: rgba(255, 255, 255, 0.06);
+
+$gradient-brand: linear-gradient(135deg, $lambo-orange 0%, $lambo-orange-light 45%, $lambo-green 100%);
+$gradient-brand-reverse: linear-gradient(135deg, $lambo-green 0%, $lambo-green-light 45%, $lambo-orange 100%);
+
+$shadow-card: 0 4px 24px rgba(0, 0, 0, 0.28), 0 0 1px rgba(255, 255, 255, 0.06);
+$shadow-orange: 0 6px 24px rgba(255, 104, 0, 0.22);
+$shadow-green: 0 6px 24px rgba(200, 240, 0, 0.16);
+$shadow-brand: 0 8px 28px rgba(255, 104, 0, 0.18), 0 0 16px rgba(200, 220, 184, 0.06);
+
+$radius-lg: 28px;
+$radius-md: 20px;
+$tab-bar-height: 128px;

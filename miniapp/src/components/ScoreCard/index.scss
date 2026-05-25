@@ -1,0 +1,62 @@
+@import '../../styles/theme';
+
+.score-card {
+  background: $bg-card;
+  border-radius: $radius-lg;
+  padding: 28px;
+  margin-bottom: 20px;
+  box-shadow: $shadow-card;
+  border: 1px solid $border-light;
+
+  &__header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 16px;
+  }
+
+  &__icon {
+    font-size: 48px;
+    margin-right: 16px;
+  }
+
+  &__info {
+    flex: 1;
+  }
+
+  &__label {
+    display: block;
+    font-size: 32px;
+    font-weight: 800;
+    color: $text-primary;
+  }
+
+  &__level {
+    display: block;
+    font-size: 24px;
+    font-weight: 600;
+    margin-top: 4px;
+  }
+
+  &__ring {
+    width: 88px;
+    height: 88px;
+    border-radius: 50%;
+    border: 4px solid;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 212, 255, 0.06);
+    box-shadow: inset 0 0 0 1px $border-light;
+  }
+
+  &__score {
+    font-size: 36px;
+    font-weight: 900;
+  }
+
+  &__summary {
+    font-size: 26px;
+    color: $text-secondary;
+    line-height: 1.6;
+  }
+}

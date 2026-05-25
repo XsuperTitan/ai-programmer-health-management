@@ -1,0 +1,16 @@
+.quiz-page {
+  &__options {
+    margin-top: 8px;
+  }
+
+  &__actions {
+    display: flex;
+    gap: 16px;
+    margin-top: 32px;
+  }
+
+  &__btn-half {
+    flex: 1;
+    margin-top: 0 !important;
+  }
+}

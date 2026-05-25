@@ -1,0 +1,36 @@
+@import '../../styles/theme';
+
+.progress-bar {
+  margin-bottom: 24px;
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 12px;
+  }
+
+  &__label {
+    font-size: 26px;
+    color: $text-secondary;
+  }
+
+  &__pct {
+    font-size: 26px;
+    font-weight: 700;
+    color: $lambo-green;
+  }
+
+  &__track {
+    height: 12px;
+    background: rgba(0, 212, 255, 0.08);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+
+  &__fill {
+    height: 100%;
+    background: $gradient-brand;
+    border-radius: 6px;
+    box-shadow: 0 0 12px rgba(255, 104, 0, 0.5);
+  }
+}

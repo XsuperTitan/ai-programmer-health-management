@@ -1,0 +1,92 @@
+@import '../../styles/theme';
+
+.result-page {
+  &__summary {
+    text-align: center;
+    padding: 40px 28px;
+    background: $gradient-brand;
+    border: none;
+    box-shadow: $shadow-brand;
+  }
+
+  &__summary-label {
+    display: block;
+    font-size: 26px;
+    color: rgba(10, 10, 10, 0.75);
+    font-weight: 600;
+  }
+
+  &__summary-score {
+    display: block;
+    font-size: 96px;
+    font-weight: 900;
+    color: #0a0a0a;
+    line-height: 1.1;
+    margin: 8px 0;
+  }
+
+  &__summary-desc {
+    display: block;
+    font-size: 24px;
+    color: rgba(10, 10, 10, 0.65);
+  }
+
+  &__pillar {
+    margin-bottom: 8px;
+  }
+
+  &__tips {
+    margin-top: -8px;
+    margin-bottom: 20px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+
+  &__tips-title {
+    display: block;
+    font-size: 26px;
+    font-weight: 700;
+    color: $text-primary;
+    margin-bottom: 12px;
+  }
+
+  &__tip-item {
+    display: block;
+    font-size: 26px;
+    color: $text-secondary;
+    line-height: 1.8;
+  }
+
+  &__metrics {
+    padding: 16px 28px;
+  }
+
+  &__metric-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+    border-bottom: 1px solid $border-light;
+
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+
+  &__metric-label {
+    font-size: 28px;
+    color: $text-secondary;
+  }
+
+  &__metric-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  &__metric-value {
+    font-size: 28px;
+    font-weight: 700;
+    color: $text-primary;
+  }
+}

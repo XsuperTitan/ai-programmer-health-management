@@ -1,0 +1,17 @@
+# Dependencies
+node_modules/
+miniapp/node_modules/
+miniapp/dist/
+
+# IDE
+.idea/
+
+# Env
+.env
+.env.local
+
+# OS
+.DS_Store
+
+# Logs
+*.log

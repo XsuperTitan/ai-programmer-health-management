@@ -1,0 +1,67 @@
+@import '../../styles/theme';
+
+@import '../../styles/chalk-page';
+
+.plan-page {
+  position: relative;
+  z-index: 1;
+
+  .page-title {
+    font-size: 40px;
+    line-height: 1.35;
+  }
+
+  &__day-tabs {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 24px;
+    overflow-x: auto;
+  }
+
+  &__day-tab {
+    flex-shrink: 0;
+    padding: 16px 28px;
+    background: $bg-card;
+    border-radius: 32px;
+    border: 2px solid $border-light;
+    box-shadow: $shadow-card;
+
+    &--active {
+      background: $gradient-brand;
+      border-color: transparent;
+      box-shadow: $shadow-brand;
+
+      .plan-page__day-tab-text {
+        color: $text-on-brand;
+      }
+    }
+  }
+
+  &__day-tab-text {
+    font-size: 26px;
+    font-weight: 700;
+    color: $text-muted;
+  }
+
+  &__habit {
+    margin-bottom: 0;
+  }
+
+  &__empty {
+    text-align: center;
+    padding: 60px 28px;
+    margin-top: 32px;
+  }
+
+  &__empty-icon {
+    display: block;
+    font-size: 64px;
+    margin-bottom: 16px;
+  }
+
+  &__empty-text {
+    font-size: 30px;
+    color: $cyber-blue;
+    font-weight: 700;
+  }
+}

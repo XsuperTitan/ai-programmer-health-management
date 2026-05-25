@@ -1,0 +1,23 @@
+@import '../../styles/theme';
+
+.reminders-page {
+  &__info {
+    margin-top: 24px;
+    margin-bottom: 8px;
+  }
+
+  &__info-title {
+    display: block;
+    font-size: 28px;
+    font-weight: 700;
+    color: $text-primary;
+    margin-bottom: 12px;
+  }
+
+  &__info-text {
+    font-size: 24px;
+    color: $text-secondary;
+    line-height: 1.8;
+    white-space: pre-line;
+  }
+}

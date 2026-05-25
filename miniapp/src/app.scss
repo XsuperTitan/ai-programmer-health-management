@@ -1,0 +1,181 @@
+@import './styles/theme';
+
+page {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC',
+    'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+  font-size: 28px;
+  color: $text-primary;
+  background: $bg-base;
+  box-sizing: border-box;
+}
+
+view, text, button, input {
+  box-sizing: border-box;
+}
+
+.page {
+  min-height: 100vh;
+  padding: 32px;
+  padding-bottom: calc(48px + #{$tab-bar-height} + env(safe-area-inset-bottom));
+  position: relative;
+  background-color: $blackboard-deep;
+  background-image:
+    linear-gradient($chalk-grid 1px, transparent 1px),
+    linear-gradient(90deg, $chalk-grid 1px, transparent 1px),
+    linear-gradient($chalk-grid-major 1px, transparent 1px),
+    linear-gradient(90deg, $chalk-grid-major 1px, transparent 1px),
+    radial-gradient(ellipse 90% 70% at 15% 8%, $chalk-dust 0%, transparent 55%),
+    radial-gradient(ellipse 70% 50% at 88% 92%, rgba(255, 255, 255, 0.02) 0%, transparent 50%),
+    linear-gradient(180deg, #1e2f26 0%, #243529 42%, #1a2820 100%);
+  background-size:
+    28px 28px,
+    28px 28px,
+    140px 140px,
+    140px 140px,
+    100% 100%,
+    100% 100%,
+    100% 100%;
+
+  &::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 240px;
+    background: radial-gradient(ellipse 80% 100% at 40% 0%, rgba(255, 255, 255, 0.035) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  &::after {
+    content: '';
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 180px;
+    background: radial-gradient(ellipse 60% 80% at 65% 100%, rgba(200, 210, 190, 0.025) 0%, transparent 65%);
+    pointer-events: none;
+    z-index: 0;
+  }
+}
+
+.page-title {
+  font-size: 44px;
+  font-weight: 800;
+  color: $text-primary;
+  line-height: 1.3;
+  margin-bottom: 12px;
+}
+
+.page-subtitle {
+  font-size: 26px;
+  color: $text-secondary;
+  line-height: 1.5;
+  margin-bottom: 32px;
+}
+
+.section-title {
+  font-size: 32px;
+  font-weight: 800;
+  color: $text-primary;
+  margin: 36px 0 20px;
+  position: relative;
+  padding-left: 16px;
+
+  &::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 6px;
+    height: 28px;
+    border-radius: 3px;
+    background: linear-gradient(180deg, $chalk-accent 0%, $lambo-orange 100%);
+    box-shadow: 0 0 6px rgba(200, 220, 184, 0.25);
+  }
+}
+
+.card {
+  background: $bg-card;
+  border-radius: $radius-lg;
+  padding: 28px;
+  margin-bottom: 20px;
+  box-shadow: $shadow-card;
+  border: 1px solid $border-light;
+  backdrop-filter: blur(8px);
+}
+
+.btn-primary {
+  background: $gradient-brand;
+  color: $text-on-brand;
+  border: none;
+  border-radius: 48px;
+  font-size: 30px;
+  font-weight: 800;
+  padding: 24px 48px;
+  width: 100%;
+  margin-top: 24px;
+  box-shadow: $shadow-brand;
+  letter-spacing: 1px;
+
+  &::after {
+    border: none;
+  }
+
+  &[disabled] {
+    opacity: 0.45;
+  }
+}
+
+.btn-secondary {
+  background: $chalk-accent-dim;
+  color: $chalk-accent;
+  border: 2px solid rgba(200, 220, 184, 0.35);
+  border-radius: 48px;
+  font-size: 28px;
+  font-weight: 700;
+  padding: 20px 40px;
+  width: 100%;
+  margin-top: 16px;
+  box-shadow: $shadow-card;
+
+  &::after {
+    border: none;
+  }
+}
+
+.tag {
+  display: inline-block;
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.tag-teal {
+  background: $chalk-accent-dim;
+  color: $chalk-accent;
+  border: 1px solid rgba(200, 220, 184, 0.3);
+}
+
+.tag-amber {
+  background: rgba(255, 104, 0, 0.15);
+  color: $lambo-orange-light;
+  border: 1px solid rgba(255, 104, 0, 0.3);
+}
+
+.tag-rose {
+  background: rgba(255, 80, 80, 0.12);
+  color: #ff6b6b;
+  border: 1px solid rgba(255, 80, 80, 0.3);
+}
+
+.disclaimer-text {
+  font-size: 22px;
+  color: $text-secondary;
+  line-height: 1.6;
+  margin-top: 24px;
+}

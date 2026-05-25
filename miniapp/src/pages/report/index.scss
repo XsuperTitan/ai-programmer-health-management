@@ -1,0 +1,31 @@
+@import '../../styles/theme';
+
+.report-page {
+  &__preview {
+    margin-top: 24px;
+    text-align: center;
+  }
+
+  &__preview-label {
+    display: block;
+    font-size: 26px;
+    font-weight: 700;
+    color: $text-primary;
+    margin-bottom: 16px;
+  }
+
+  &__preview-img {
+    width: 100%;
+    max-height: 400px;
+    border-radius: 16px;
+    background: rgba(0, 212, 255, 0.06);
+    border: 1px solid $border-light;
+  }
+
+  &__preview-hint {
+    display: block;
+    font-size: 22px;
+    color: $text-muted;
+    margin-top: 12px;
+  }
+}

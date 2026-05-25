@@ -1,0 +1,67 @@
+@import '../../styles/theme';
+
+.chalk-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+
+  &__text {
+    position: absolute;
+    max-width: 72%;
+    font-family: 'Kaiti SC', 'STKaiti', 'PingFang SC', cursive;
+    font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    letter-spacing: 2px;
+    filter: blur(0.8px);
+    transform-origin: 0% 50%;
+
+    &--white {
+      color: rgba(238, 244, 232, 0.52);
+      text-shadow:
+        0 0 10px rgba(238, 244, 232, 0.18),
+        1px 2px 4px rgba(255, 255, 255, 0.12);
+    }
+
+    &--yellow {
+      color: rgba(248, 232, 175, 0.5);
+      text-shadow:
+        0 0 10px rgba(248, 232, 175, 0.16),
+        1px 2px 4px rgba(248, 232, 175, 0.1);
+    }
+
+    &--orange {
+      color: rgba(255, 195, 140, 0.48);
+      text-shadow:
+        0 0 10px rgba(255, 195, 140, 0.15),
+        1px 2px 4px rgba(255, 150, 80, 0.1);
+    }
+
+    &--green {
+      color: rgba(210, 238, 165, 0.5);
+      text-shadow:
+        0 0 10px rgba(210, 238, 165, 0.16),
+        1px 2px 4px rgba(180, 220, 130, 0.1);
+    }
+
+    &--cyan {
+      color: rgba(175, 220, 228, 0.48);
+      text-shadow:
+        0 0 10px rgba(175, 220, 228, 0.15),
+        1px 2px 4px rgba(140, 200, 210, 0.1);
+    }
+
+    &--coral {
+      color: rgba(248, 205, 190, 0.48);
+      text-shadow:
+        0 0 10px rgba(248, 205, 190, 0.14),
+        1px 2px 4px rgba(230, 170, 150, 0.1);
+    }
+  }
+}

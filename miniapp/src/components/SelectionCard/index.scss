@@ -1,0 +1,67 @@
+@import '../../styles/theme';
+
+.selection-card {
+  display: flex;
+  align-items: center;
+  padding: 24px 28px;
+  background: $bg-card;
+  border-radius: $radius-md;
+  margin-bottom: 16px;
+  border: 2px solid $border-light;
+  box-shadow: $shadow-card;
+
+  &--selected {
+    border-color: rgba(0, 212, 255, 0.5);
+    background: linear-gradient(135deg, rgba(0, 212, 255, 0.1) 0%, rgba(255, 104, 0, 0.06) 100%);
+    box-shadow: 0 0 20px rgba(0, 212, 255, 0.12);
+  }
+
+  &__icon {
+    font-size: 40px;
+    margin-right: 20px;
+    flex-shrink: 0;
+  }
+
+  &__content {
+    flex: 1;
+    min-width: 0;
+  }
+
+  &__label {
+    display: block;
+    font-size: 30px;
+    font-weight: 700;
+    color: $text-primary;
+    line-height: 1.4;
+  }
+
+  &__desc {
+    display: block;
+    font-size: 24px;
+    color: $text-muted;
+    margin-top: 4px;
+  }
+
+  &__check {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-left: 16px;
+
+    &--on {
+      background: $gradient-brand;
+      border-color: transparent;
+    }
+  }
+
+  &__check-icon {
+    color: $text-on-brand;
+    font-size: 22px;
+    font-weight: 800;
+  }
+}
