@@ -70,6 +70,14 @@ export interface HealthSession {
   metrics: HealthMetric[]
   scores: PillarScore[]
   plan: PlanDay[]
+  selectedKeywords?: string[]
+  planSource?: 'quiz' | 'customize'
+}
+
+export interface KeywordCandidate {
+  text: string
+  priority: number
+  pillar?: PlanHabit['pillar']
 }
 
 export interface ChalkMessage {

@@ -5,6 +5,7 @@ export default defineAppConfig({
     'pages/quiz/index',
     'pages/result/index',
     'pages/plan/index',
+    'pages/customize/index',
     'pages/reminders/index',
     'pages/profile/index',
     'pages/disclaimer/index'
@@ -30,6 +31,10 @@ export default defineAppConfig({
       {
         pagePath: 'pages/plan/index',
         text: '计划'
+      },
+      {
+        pagePath: 'pages/customize/index',
+        text: '定制'
       },
       {
         pagePath: 'pages/profile/index',

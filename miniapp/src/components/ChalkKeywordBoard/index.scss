@@ -1,0 +1,48 @@
+@import '../../styles/theme';
+
+.chalk-keyword-board {
+  position: relative;
+  min-height: 180px;
+  padding: 24px 20px 44px;
+  border-radius: 12px;
+  background-color: #3a4f46;
+  background-image:
+    linear-gradient($chalk-grid-light 1px, transparent 1px),
+    linear-gradient(90deg, $chalk-grid-light 1px, transparent 1px),
+    linear-gradient($chalk-grid-major-light 1px, transparent 1px),
+    linear-gradient(90deg, $chalk-grid-major-light 1px, transparent 1px),
+    linear-gradient(180deg, #384c44 0%, #455a50 100%);
+  background-size:
+    28px 28px,
+    28px 28px,
+    140px 140px,
+    140px 140px,
+    100% 100%;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: inset 0 2px 16px rgba(0, 0, 0, 0.18);
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  gap: 8px 16px;
+
+  &__item {
+    flex-shrink: 0;
+  }
+
+  &__empty {
+    font-family: 'Kaiti SC', 'STKaiti', 'PingFang SC', cursive;
+    font-size: 28px;
+    color: rgba(238, 244, 232, 0.55);
+    padding: 32px 8px;
+    letter-spacing: 1px;
+  }
+
+  &__count {
+    position: absolute;
+    right: 16px;
+    bottom: 12px;
+    font-size: 24px;
+    color: rgba(200, 240, 0, 0.75);
+    font-weight: 700;
+  }
+}

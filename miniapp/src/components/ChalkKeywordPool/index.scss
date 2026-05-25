@@ -1,0 +1,33 @@
+@import '../../styles/theme';
+
+.chalk-keyword-pool {
+  border-radius: 12px;
+  padding: 16px 12px;
+  max-height: 520px;
+  overflow-y: auto;
+  background-color: #3a4f46;
+  background-image:
+    linear-gradient($chalk-grid-light 1px, transparent 1px),
+    linear-gradient(90deg, $chalk-grid-light 1px, transparent 1px),
+    linear-gradient($chalk-grid-major-light 1px, transparent 1px),
+    linear-gradient(90deg, $chalk-grid-major-light 1px, transparent 1px),
+    linear-gradient(180deg, #384c44 0%, #455a50 100%);
+  background-size:
+    28px 28px,
+    28px 28px,
+    140px 140px,
+    140px 140px,
+    100% 100%;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: inset 0 2px 16px rgba(0, 0, 0, 0.18);
+
+  display: flex;
+  gap: 16px;
+
+  &__column {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+  }
+}

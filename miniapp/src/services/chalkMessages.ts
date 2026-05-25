@@ -4,11 +4,12 @@ import {
   CHALK_LAYOUT_SLOTS,
   clampChalkLayout
 } from '@/utils/chalkLayout'
-import type { ChalkMessage, ChalkPage } from '@/types'
+import type { ChalkMessage, ChalkPage, KeywordCandidate } from '@/types'
 
 interface ChalkCandidate {
   text: string
   priority: number
+  pillar?: KeywordCandidate['pillar']
 }
 
 const DEFAULT_CHALKS: ChalkCandidate[] = [
@@ -58,7 +59,21 @@ function shortenScoreLabel(label: string): string {
     .trim()
 }
 
-function collectCandidates(page: ChalkPage): ChalkCandidate[] {
+function inferPillar(text: string): KeywordCandidate['pillar'] {
+  if (text.includes('米诺') || text.includes('护发') || text.includes('头发') || text.includes('scalp') || text.includes('护眼')) {
+    return 'hair'
+  }
+  if (text.includes('拉伸') || text.includes('体态') || text.includes('起身') || text.includes('蛋白') || text.includes('肌肉')) {
+    return 'muscle'
+  }
+  return 'body'
+}
+
+function enrichCandidate(c: ChalkCandidate): ChalkCandidate {
+  return { ...c, pillar: c.pillar ?? inferPillar(c.text) }
+}
+
+export function collectCandidates(page: ChalkPage): ChalkCandidate[] {
   const session = getSession()
   const user = getUser()
   const reminders = getReminders()
@@ -127,12 +142,21 @@ function collectCandidates(page: ChalkPage): ChalkCandidate[] {
 
   const seen = new Set<string>()
   return candidates
+    .map(enrichCandidate)
     .sort((a, b) => b.priority - a.priority)
     .filter(c => {
       if (seen.has(c.text)) return false
       seen.add(c.text)
       return true
     })
+}
+
+export function getKeywordCandidates(): KeywordCandidate[] {
+  return collectCandidates('home').map(({ text, priority, pillar }) => ({
+    text,
+    priority,
+    pillar
+  }))
 }
 
 export function getChalkMessages(page: ChalkPage): ChalkMessage[] {

@@ -26,7 +26,7 @@ export default function ProfilePage() {
   const [nickname, setNickname] = useState('')
 
   useDidShow(() => {
-    syncTabBar(2)
+    syncTabBar(3)
     const u = getUser()
     setUser(u)
     setNickname(u.nickname)

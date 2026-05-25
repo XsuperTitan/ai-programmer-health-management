@@ -1,0 +1,36 @@
+@import '../../styles/theme';
+
+@import '../../styles/chalk-page';
+
+.customize-page {
+  position: relative;
+  z-index: 1;
+
+  &__content {
+    position: relative;
+    z-index: 2;
+  }
+
+  &__section {
+    margin-bottom: 32px;
+  }
+
+  &__section-title {
+    display: block;
+    font-size: 30px;
+    font-weight: 700;
+    color: $text-primary;
+    margin-bottom: 8px;
+  }
+
+  &__section-desc {
+    display: block;
+    font-size: 24px;
+    color: $text-secondary;
+    margin-bottom: 12px;
+  }
+
+  &__actions {
+    margin-top: 40px;
+  }
+}

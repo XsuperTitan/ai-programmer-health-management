@@ -31,7 +31,7 @@ export default function HomePage() {
   const goReport = () => Taro.navigateTo({ url: '/pages/report/index' })
   const goQuiz = () => Taro.navigateTo({ url: '/pages/quiz/index' })
   const goResult = () => Taro.navigateTo({ url: '/pages/result/index' })
-  const goPlan = () => Taro.switchTab({ url: '/pages/plan/index' })
+  const goCustomize = () => Taro.switchTab({ url: '/pages/customize/index' })
   const goReminders = () => Taro.navigateTo({ url: '/pages/reminders/index' })
 
   const goHair = () => {
@@ -96,7 +96,7 @@ export default function HomePage() {
         variant='fitness'
         title='程序员健身定制'
         subtitle='久坐族专属训练 · 身体拯救打卡计划'
-        onClick={goPlan}
+        onClick={goCustomize}
       />
       <ModuleCard
         variant='report'

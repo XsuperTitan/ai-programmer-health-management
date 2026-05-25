@@ -6,6 +6,7 @@ import './index.scss'
 const TAB_LIST = [
   { pagePath: '/pages/home/index', text: '首页' },
   { pagePath: '/pages/plan/index', text: '计划' },
+  { pagePath: '/pages/customize/index', text: '定制' },
   { pagePath: '/pages/profile/index', text: '我的' }
 ]
 

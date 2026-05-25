@@ -5,7 +5,7 @@ import SelectionCard from '@/components/SelectionCard'
 import ProgressBar from '@/components/ProgressBar'
 import ChalkBackground from '@/components/ChalkBackground'
 import ProductRecommendSection from '@/components/ProductRecommendSection'
-import { getSession, getUser, MOCK_PLAN, toggleHabitComplete } from '@/services/mock'
+import { getSession, getUser, toggleHabitComplete } from '@/services/mock'
 import { getChalkMessages } from '@/services/chalkMessages'
 import { syncTabBar } from '@/utils/tabBar'
 import type { PlanDay, ChalkMessage, UserProfile } from '@/types'
@@ -31,9 +31,11 @@ export default function PlanPage() {
     syncTabBar(1)
     const session = getSession()
     setUser(getUser())
-    setPlan(session.plan.length ? session.plan : MOCK_PLAN)
+    setPlan(session.plan)
     setChalkMessages(getChalkMessages('plan'))
   })
+
+  const hasSessionPlan = plan.length > 0
 
   const currentDay = plan[activeDay]
   const completedCount = currentDay?.habits.filter(h => h.completed).length ?? 0
@@ -45,18 +47,25 @@ export default function PlanPage() {
     setPlan(updated)
   }
 
-  if (!plan.length) {
+  if (!hasSessionPlan) {
     return (
       <View className='page page--chalk plan-page'>
         <ChalkBackground messages={chalkMessages} />
         <Text className='page-title'>{title}</Text>
-        <Text className='page-subtitle'>请先完成问卷获取个性化计划</Text>
+        <Text className='page-subtitle'>完成问卷或定制关键词，获取个性化计划</Text>
         <View
           className='plan-page__empty card'
           onClick={() => Taro.navigateTo({ url: '/pages/quiz/index' })}
         >
           <Text className='plan-page__empty-icon'>🎯</Text>
           <Text className='plan-page__empty-text'>去填写问卷</Text>
+        </View>
+        <View
+          className='plan-page__empty card plan-page__empty--secondary'
+          onClick={() => Taro.switchTab({ url: '/pages/customize/index' })}
+        >
+          <Text className='plan-page__empty-icon'>✏️</Text>
+          <Text className='plan-page__empty-text'>去定制改善关键词</Text>
         </View>
       </View>
     )

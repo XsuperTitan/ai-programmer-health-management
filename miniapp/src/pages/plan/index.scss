@@ -51,6 +51,14 @@
     text-align: center;
     padding: 60px 28px;
     margin-top: 32px;
+
+    &--secondary {
+      margin-top: 20px;
+
+      .plan-page__empty-text {
+        color: $lambo-green;
+      }
+    }
   }
 
   &__empty-icon {
