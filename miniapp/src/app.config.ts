@@ -5,6 +5,7 @@ export default defineAppConfig({
     'pages/quiz/index',
     'pages/result/index',
     'pages/plan/index',
+    'pages/keyword-plan/index',
     'pages/reminders/index',
     'pages/profile/index',
     'pages/disclaimer/index'

@@ -4,11 +4,15 @@ import { useState } from 'react'
 import SelectionCard from '@/components/SelectionCard'
 import ProgressBar from '@/components/ProgressBar'
 import ChalkBackground from '@/components/ChalkBackground'
+import ChalkInteractiveLayer from '@/components/ChalkInteractiveLayer'
+import ChalkDetailSheet from '@/components/ChalkDetailSheet'
 import ProductRecommendSection from '@/components/ProductRecommendSection'
 import { getSession, getUser, MOCK_PLAN, toggleHabitComplete } from '@/services/mock'
 import { getChalkMessages } from '@/services/chalkMessages'
+import { getChalkDetail } from '@/constants/chalkDetails'
 import { syncTabBar } from '@/utils/tabBar'
 import type { PlanDay, ChalkMessage, UserProfile } from '@/types'
+import type { ChalkDetail } from '@/constants/chalkDetails'
 import './index.scss'
 
 const PILLAR_LABEL: Record<string, string> = {
@@ -26,6 +30,8 @@ export default function PlanPage() {
   const [activeDay, setActiveDay] = useState(0)
   const [user, setUser] = useState<UserProfile>(getUser())
   const [chalkMessages, setChalkMessages] = useState<ChalkMessage[]>(getChalkMessages('plan'))
+  const [chalkDetail, setChalkDetail] = useState<ChalkDetail | null>(null)
+  const [sheetVisible, setSheetVisible] = useState(false)
 
   useDidShow(() => {
     syncTabBar(1)
@@ -45,10 +51,19 @@ export default function PlanPage() {
     setPlan(updated)
   }
 
+  const handleChalkTap = (msg: ChalkMessage) => {
+    setChalkDetail(getChalkDetail(msg.text, msg.linkType))
+    setSheetVisible(true)
+  }
+
+  const closeSheet = () => setSheetVisible(false)
+
   if (!plan.length) {
     return (
       <View className='page page--chalk plan-page'>
         <ChalkBackground messages={chalkMessages} />
+        <ChalkInteractiveLayer messages={chalkMessages} onMessageTap={handleChalkTap} />
+        <ChalkDetailSheet visible={sheetVisible} detail={chalkDetail} onClose={closeSheet} />
         <Text className='page-title'>{title}</Text>
         <Text className='page-subtitle'>请先完成问卷获取个性化计划</Text>
         <View
@@ -58,6 +73,13 @@ export default function PlanPage() {
           <Text className='plan-page__empty-icon'>🎯</Text>
           <Text className='plan-page__empty-text'>去填写问卷</Text>
         </View>
+        <View
+          className='plan-page__empty card plan-page__empty--secondary'
+          onClick={() => Taro.navigateTo({ url: '/pages/keyword-plan/index' })}
+        >
+          <Text className='plan-page__empty-icon'>✏️</Text>
+          <Text className='plan-page__empty-text'>定制我的改善关键词</Text>
+        </View>
       </View>
     )
   }
@@ -65,6 +87,8 @@ export default function PlanPage() {
   return (
     <View className='page page--chalk plan-page'>
       <ChalkBackground messages={chalkMessages} />
+      <ChalkInteractiveLayer messages={chalkMessages} onMessageTap={handleChalkTap} />
+      <ChalkDetailSheet visible={sheetVisible} detail={chalkDetail} onClose={closeSheet} />
       <Text className='page-title'>{title}</Text>
       <Text className='page-subtitle'>
         每个习惯 ≤3 分钟，专为久坐编程族设计

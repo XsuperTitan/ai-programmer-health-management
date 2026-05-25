@@ -33,4 +33,28 @@
     border-radius: 6px;
     box-shadow: 0 0 12px rgba(255, 104, 0, 0.5);
   }
+
+  &--chalk {
+    .progress-bar__label {
+      font-family: 'Kaiti SC', 'STKaiti', 'PingFang SC', cursive;
+      color: rgba(238, 244, 232, 0.75);
+      letter-spacing: 1px;
+    }
+
+    .progress-bar__pct {
+      color: rgba(200, 240, 0, 0.9);
+    }
+
+    .progress-bar__track {
+      height: 14px;
+      background: rgba(238, 244, 232, 0.12);
+      border: 1px dashed rgba(238, 244, 232, 0.2);
+      border-radius: 8px;
+    }
+
+    .progress-bar__fill {
+      background: linear-gradient(90deg, $lambo-orange 0%, $lambo-green 100%);
+      box-shadow: 0 0 8px rgba(255, 104, 0, 0.35);
+    }
+  }
 }

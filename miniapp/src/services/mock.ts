@@ -4,6 +4,7 @@ import type {
   HealthMetric,
   PillarScore,
   PlanDay,
+  PlanHabit,
   ReminderItem,
   HealthSession,
   HealthAlert,
@@ -364,4 +365,76 @@ export function toggleHabitComplete(dayIndex: number, habitId: string): PlanDay[
   session.plan = updated
   saveSession(session)
   return updated
+}
+
+const KEYWORD_HABIT_MAP: Record<string, Omit<PlanHabit, 'id' | 'completed'>> = {
+  '早睡': { title: '23:30 前放下手机', description: '设置睡眠闹钟，减少蓝光刺激', duration: '1分钟', pillar: 'body' },
+  '23:30放下手机': { title: '23:30 前放下手机', description: '设置睡眠闹钟，减少蓝光刺激', duration: '1分钟', pillar: 'body' },
+  '涂米诺地尔': { title: '涂米诺地尔', description: '早晚涂抹，轻按摩头皮 3 分钟', duration: '3分钟', pillar: 'hair' },
+  '起身活动': { title: '45分钟起身拉伸', description: '颈肩环绕 + 站立 30 秒', duration: '3分钟', pillar: 'muscle' },
+  '少熬夜': { title: '23:30 前入睡', description: '保障头发与代谢恢复', duration: '1分钟', pillar: 'body' },
+  '护眼休息': { title: '20-20-20 护眼', description: '每 20 分钟看 6 米外 20 秒', duration: '1分钟', pillar: 'hair' },
+  '体态拉伸': { title: '5 分钟体态矫正', description: '圆肩前倾拉伸', duration: '5分钟', pillar: 'muscle' },
+  '6000步': { title: '6000 步目标', description: '工间散步或楼梯代替电梯', duration: '全天', pillar: 'body' },
+  '控制体重': { title: '控制精制碳水', description: '午餐减少精制碳水比例', duration: '全天', pillar: 'body' },
+  '补充维生素D': { title: '补充维生素 D', description: '每日 1 粒或晒太阳 15 分钟', duration: '1分钟', pillar: 'body' }
+}
+
+function habitFromKeyword(keyword: string, index: number): PlanHabit {
+  const mapped = KEYWORD_HABIT_MAP[keyword]
+  if (mapped) {
+    return {
+      id: `kw-${index}-${keyword}`,
+      ...mapped,
+      completed: false
+    }
+  }
+  return {
+    id: `kw-${index}-${keyword}`,
+    title: keyword,
+    description: '每日微习惯，坚持比强度更重要',
+    duration: '3分钟',
+    pillar: 'body',
+    completed: false
+  }
+}
+
+export function saveSelectedKeywords(keywords: string[]): void {
+  const session = getSession()
+  session.selectedKeywords = keywords
+  saveSession(session)
+}
+
+export function getSelectedKeywords(): string[] {
+  return getSession().selectedKeywords ?? []
+}
+
+export function generatePlanFromKeywords(keywords: string[]): PlanDay[] {
+  const habits = keywords.slice(0, 5).map((kw, i) => habitFromKeyword(kw, i))
+  const plan: PlanDay[] = [
+    { day: 1, date: '今天', habits },
+    {
+      day: 2,
+      date: '明天',
+      habits: habits.map((h, i) => ({
+        ...h,
+        id: `kw-d2-${i}-${h.title}`,
+        completed: false
+      }))
+    },
+    {
+      day: 3,
+      date: '第3天',
+      habits: habits.map((h, i) => ({
+        ...h,
+        id: `kw-d3-${i}-${h.title}`,
+        completed: false
+      }))
+    }
+  ]
+  const session = getSession()
+  session.selectedKeywords = keywords.slice(0, 5)
+  session.plan = plan
+  saveSession(session)
+  return plan
 }

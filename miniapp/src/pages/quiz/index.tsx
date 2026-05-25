@@ -3,8 +3,23 @@ import Taro from '@tarojs/taro'
 import { useState } from 'react'
 import SelectionCard from '@/components/SelectionCard'
 import ProgressBar from '@/components/ProgressBar'
+import ChalkBackground from '@/components/ChalkBackground'
 import { QUIZ_QUESTIONS, completeQuiz } from '@/services/mock'
+import type { ChalkMessage } from '@/types'
 import './index.scss'
+
+const QUIZ_DECOR: ChalkMessage[] = [
+  {
+    id: 'quiz-decor',
+    text: '你每天编程多久？',
+    top: 14,
+    left: 10,
+    rotate: -5,
+    fontSize: 30,
+    opacity: 0.42,
+    color: 'yellow'
+  }
+]
 
 export default function QuizPage() {
   const [step, setStep] = useState(0)
@@ -41,40 +56,43 @@ export default function QuizPage() {
   }
 
   return (
-    <View className='page quiz-page'>
-      <ProgressBar current={step + 1} total={total} label='问卷进度' />
+    <View className='page page--chalk quiz-page'>
+      <ChalkBackground messages={step === 0 ? QUIZ_DECOR : []} />
+      <View className='quiz-page__content'>
+        <ProgressBar current={step + 1} total={total} label='问卷进度' variant='chalk' />
 
-      <Text className='page-title'>{question.title}</Text>
-      {question.subtitle && (
-        <Text className='page-subtitle'>{question.subtitle}</Text>
-      )}
-
-      <View className='quiz-page__options'>
-        {question.options.map(opt => (
-          <SelectionCard
-            key={opt.value}
-            label={opt.label}
-            desc={opt.desc}
-            selected={currentAnswer === opt.value}
-            onClick={() => selectOption(opt.value)}
-          />
-        ))}
-      </View>
-
-      <View className='quiz-page__actions'>
-        {step > 0 && (
-          <Button className='btn-secondary quiz-page__btn-half' onClick={goPrev}>
-            上一题
-          </Button>
+        <Text className='page-title'>{question.title}</Text>
+        {question.subtitle && (
+          <Text className='page-subtitle'>{question.subtitle}</Text>
         )}
-        <Button
-          className={`btn-primary ${step > 0 ? 'quiz-page__btn-half' : ''}`}
-          loading={submitting}
-          disabled={!currentAnswer || submitting}
-          onClick={goNext}
-        >
-          {step < total - 1 ? '下一题' : submitting ? 'AI 分析中...' : '提交并查看结果'}
-        </Button>
+
+        <View className='quiz-page__options'>
+          {question.options.map(opt => (
+            <SelectionCard
+              key={opt.value}
+              label={opt.label}
+              desc={opt.desc}
+              selected={currentAnswer === opt.value}
+              onClick={() => selectOption(opt.value)}
+            />
+          ))}
+        </View>
+
+        <View className='quiz-page__actions'>
+          {step > 0 && (
+            <Button className='btn-secondary quiz-page__btn-half' onClick={goPrev}>
+              上一题
+            </Button>
+          )}
+          <Button
+            className={`btn-primary ${step > 0 ? 'quiz-page__btn-half' : ''}`}
+            loading={submitting}
+            disabled={!currentAnswer || submitting}
+            onClick={goNext}
+          >
+            {step < total - 1 ? '下一题' : submitting ? 'AI 分析中...' : '提交并查看结果'}
+          </Button>
+        </View>
       </View>
     </View>
   )

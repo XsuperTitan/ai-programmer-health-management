@@ -63,5 +63,20 @@
         0 0 10px rgba(248, 205, 190, 0.14),
         1px 2px 4px rgba(230, 170, 150, 0.1);
     }
+
+    &--highlight {
+      animation: chalkPulse 2.8s ease-in-out infinite;
+      filter: blur(0.5px);
+    }
+  }
+}
+
+@keyframes chalkPulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.55;
   }
 }

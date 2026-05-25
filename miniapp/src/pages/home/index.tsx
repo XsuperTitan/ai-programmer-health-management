@@ -5,10 +5,14 @@ import ModuleCard from '@/components/ModuleCard'
 import AlertBanner from '@/components/AlertBanner'
 import ScoreCard from '@/components/ScoreCard'
 import ChalkBackground from '@/components/ChalkBackground'
+import ChalkInteractiveLayer from '@/components/ChalkInteractiveLayer'
+import ChalkDetailSheet from '@/components/ChalkDetailSheet'
 import { getUser, getSession, getActiveAlerts } from '@/services/mock'
 import { getChalkMessages } from '@/services/chalkMessages'
+import { getChalkDetail } from '@/constants/chalkDetails'
 import { syncTabBar } from '@/utils/tabBar'
 import type { UserProfile, HealthSession, HealthAlert, ChalkMessage } from '@/types'
+import type { ChalkDetail } from '@/constants/chalkDetails'
 import './index.scss'
 
 export default function HomePage() {
@@ -16,6 +20,8 @@ export default function HomePage() {
   const [session, setSession] = useState<HealthSession>(getSession())
   const [alerts, setAlerts] = useState<HealthAlert[]>(getActiveAlerts())
   const [chalkMessages, setChalkMessages] = useState<ChalkMessage[]>(getChalkMessages('home'))
+  const [chalkDetail, setChalkDetail] = useState<ChalkDetail | null>(null)
+  const [sheetVisible, setSheetVisible] = useState(false)
 
   useDidShow(() => {
     syncTabBar(0)
@@ -32,6 +38,7 @@ export default function HomePage() {
   const goQuiz = () => Taro.navigateTo({ url: '/pages/quiz/index' })
   const goResult = () => Taro.navigateTo({ url: '/pages/result/index' })
   const goPlan = () => Taro.switchTab({ url: '/pages/plan/index' })
+  const goKeywordPlan = () => Taro.navigateTo({ url: '/pages/keyword-plan/index' })
   const goReminders = () => Taro.navigateTo({ url: '/pages/reminders/index' })
 
   const goHair = () => {
@@ -52,9 +59,18 @@ export default function HomePage() {
     Taro.showToast({ title: '已记录', icon: 'success', duration: 1500 })
   }
 
+  const handleChalkTap = (msg: ChalkMessage) => {
+    setChalkDetail(getChalkDetail(msg.text, msg.linkType))
+    setSheetVisible(true)
+  }
+
+  const closeSheet = () => setSheetVisible(false)
+
   return (
     <View className='page page--chalk home-page'>
       <ChalkBackground messages={chalkMessages} />
+      <ChalkInteractiveLayer messages={chalkMessages} onMessageTap={handleChalkTap} />
+      <ChalkDetailSheet visible={sheetVisible} detail={chalkDetail} onClose={closeSheet} />
       <View className='home-page__hero'>
         <Text className='home-page__greeting'>
           {user.isLoggedIn ? `你好，${user.nickname}` : '程序员健康助手'}
@@ -96,7 +112,7 @@ export default function HomePage() {
         variant='fitness'
         title='程序员健身定制'
         subtitle='久坐族专属训练 · 身体拯救打卡计划'
-        onClick={goPlan}
+        onClick={goKeywordPlan}
       />
       <ModuleCard
         variant='report'

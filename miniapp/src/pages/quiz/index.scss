@@ -1,4 +1,11 @@
 .quiz-page {
+  position: relative;
+
+  &__content {
+    position: relative;
+    z-index: 2;
+  }
+
   &__options {
     margin-top: 8px;
   }
