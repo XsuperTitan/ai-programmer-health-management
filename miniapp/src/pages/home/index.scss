@@ -69,6 +69,15 @@
       color: $text-on-brand;
       border-color: transparent;
       box-shadow: $shadow-orange;
+
+      &::after {
+        content: '';
+        width: 14px;
+        height: 8px;
+        border-left: 3px solid $text-on-brand;
+        border-bottom: 3px solid $text-on-brand;
+        transform: rotate(-45deg) translateY(-2px);
+      }
     }
   }
 

@@ -48,7 +48,7 @@ export default function RemindersPage() {
       {reminders.map(item => (
         <SelectionCard
           key={item.id}
-          icon={item.icon}
+          iconKey={item.iconKey}
           label={item.title}
           desc={`${item.description} · ${item.time}`}
           selected={item.enabled}
@@ -57,7 +57,7 @@ export default function RemindersPage() {
       ))}
 
       <View className='reminders-page__info card'>
-        <Text className='reminders-page__info-title'>💡 提醒说明</Text>
+        <Text className='reminders-page__info-title'>提醒说明</Text>
         <Text className='reminders-page__info-text'>
           • 起身活动：每45分钟提醒一次，缓解久坐{'\n'}
           • 20-20-20：每20分钟看6米外20秒{'\n'}

@@ -1,4 +1,5 @@
 import type { ChalkColorVariant } from '@/constants/chalkColors'
+import type { AppIconKey } from '@/constants/icons'
 
 export interface UserProfile {
   nickname: string
@@ -22,7 +23,7 @@ export interface PillarScore {
   score: number
   summary: string
   tips: string[]
-  icon: string
+  iconKey: AppIconKey
   color: string
 }
 
@@ -38,6 +39,7 @@ export interface PlanHabit {
   duration: string
   pillar: 'hair' | 'muscle' | 'body'
   completed: boolean
+  iconKey?: AppIconKey
 }
 
 export interface PlanDay {
@@ -52,7 +54,7 @@ export interface ReminderItem {
   description: string
   time: string
   enabled: boolean
-  icon: string
+  iconKey: AppIconKey
 }
 
 export interface HealthAlert {

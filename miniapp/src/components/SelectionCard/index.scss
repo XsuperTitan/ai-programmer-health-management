@@ -17,9 +17,7 @@
   }
 
   &__icon {
-    font-size: 40px;
-    margin-right: 20px;
-    flex-shrink: 0;
+    margin-right: 24px;
   }
 
   &__content {
@@ -56,12 +54,15 @@
     &--on {
       background: $gradient-brand;
       border-color: transparent;
-    }
-  }
 
-  &__check-icon {
-    color: $text-on-brand;
-    font-size: 22px;
-    font-weight: 800;
+      &::after {
+        content: '';
+        width: 12px;
+        height: 7px;
+        border-left: 3px solid $text-on-brand;
+        border-bottom: 3px solid $text-on-brand;
+        transform: rotate(-45deg) translateY(-1px);
+      }
+    }
   }
 }

@@ -1,8 +1,10 @@
 import { View, Text } from '@tarojs/components'
+import IconBadge from '@/components/IconBadge'
+import type { AppIconKey } from '@/constants/icons'
 import './index.scss'
 
 interface NavCardProps {
-  icon: string
+  iconKey: AppIconKey
   title: string
   subtitle: string
   tag?: string
@@ -11,7 +13,7 @@ interface NavCardProps {
 }
 
 export default function NavCard({
-  icon,
+  iconKey,
   title,
   subtitle,
   tag,
@@ -20,12 +22,12 @@ export default function NavCard({
 }: NavCardProps) {
   return (
     <View className='nav-card' onClick={onClick}>
-      <Text className='nav-card__icon'>{icon}</Text>
+      <IconBadge iconKey={iconKey} size='md' className='nav-card__icon' />
       <View className='nav-card__body'>
         <View className='nav-card__title-row'>
           <Text className='nav-card__title'>{title}</Text>
           {tag && <Text className='nav-card__tag'>{tag}</Text>}
-          {done && <Text className='nav-card__done'>✓ 已完成</Text>}
+          {done && <Text className='nav-card__done'>已完成</Text>}
         </View>
         <Text className='nav-card__subtitle'>{subtitle}</Text>
       </View>

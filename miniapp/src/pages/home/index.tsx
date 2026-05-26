@@ -71,7 +71,7 @@ export default function HomePage() {
             {['上传体检报告', '填写健康问卷', '查看AI分析'].map((step, i) => (
               <View key={step} className='home-page__step'>
                 <View className={`home-page__step-dot ${stepDone[i] ? 'home-page__step-dot--done' : ''}`}>
-                  {stepDone[i] ? '✓' : i + 1}
+                  {!stepDone[i] && (i + 1)}
                 </View>
                 <Text className='home-page__step-text'>{step}</Text>
               </View>

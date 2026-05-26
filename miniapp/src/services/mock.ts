@@ -1,4 +1,5 @@
 import Taro from '@tarojs/taro'
+import { getKeywordIconKey, getHabitIconKey } from '@/constants/icons'
 import type {
   UserProfile,
   HealthMetric,
@@ -57,7 +58,7 @@ export const MOCK_SCORES: PillarScore[] = [
     score: 62,
     summary: '维生素D偏低，结合熬夜与压力，存在脱发风险信号',
     tips: ['23:30前入睡', '补充富含维生素D的食物', '每日 scalp 按摩3分钟'],
-    icon: '💇',
+    iconKey: 'hair',
     color: '#ff6800'
   },
   {
@@ -66,7 +67,7 @@ export const MOCK_SCORES: PillarScore[] = [
     score: 71,
     summary: 'BMI略偏高，久坐导致体脂分布不均，存在圆肩前倾体态',
     tips: ['每日5分钟体态矫正拉伸', '控制精制碳水摄入', '工间站立办公30分钟'],
-    icon: '🧍',
+    iconKey: 'muscle',
     color: '#c8f000'
   },
   {
@@ -75,7 +76,7 @@ export const MOCK_SCORES: PillarScore[] = [
     score: 58,
     summary: 'BMI略高，ALT偏高，需关注代谢与肝脏负担',
     tips: ['减少含糖饮料', '每日6000步', '23点前停止进食'],
-    icon: '🫀',
+    iconKey: 'body',
     color: '#ff9533'
   }
 ]
@@ -85,36 +86,36 @@ export const MOCK_PLAN: PlanDay[] = [
     day: 1,
     date: '今天',
     habits: [
-      { id: 'h1', title: '23:30 前放下手机', description: '设置睡眠闹钟，减少蓝光', duration: '1分钟', pillar: 'hair', completed: false },
-      { id: 'h2', title: '45分钟起身拉伸', description: '颈肩环绕 + 站立30秒', duration: '3分钟', pillar: 'muscle', completed: false },
-      { id: 'h3', title: '6000步目标', description: '工间散步或楼梯代替电梯', duration: '全天', pillar: 'body', completed: false }
+      { id: 'h1', title: '23:30 前放下手机', description: '设置睡眠闹钟，减少蓝光', duration: '1分钟', pillar: 'hair', iconKey: 'phoneOff', completed: false },
+      { id: 'h2', title: '45分钟起身拉伸', description: '颈肩环绕 + 站立30秒', duration: '3分钟', pillar: 'muscle', iconKey: 'stretch', completed: false },
+      { id: 'h3', title: '6000步目标', description: '工间散步或楼梯代替电梯', duration: '全天', pillar: 'body', iconKey: 'walk', completed: false }
     ]
   },
   {
     day: 2,
     date: '明天',
     habits: [
-      { id: 'h4', title: ' scalp 按摩', description: '指腹从前额到后脑轻按', duration: '3分钟', pillar: 'hair', completed: false },
-      { id: 'h5', title: '核心激活', description: '平板支撑 3×20秒', duration: '2分钟', pillar: 'muscle', completed: false },
-      { id: 'h6', title: '替换含糖饮料', description: '改喝无糖茶或气泡水', duration: '全天', pillar: 'body', completed: false }
+      { id: 'h4', title: ' scalp 按摩', description: '指腹从前额到后脑轻按', duration: '3分钟', pillar: 'hair', iconKey: 'scalp', completed: false },
+      { id: 'h5', title: '核心激活', description: '平板支撑 3×20秒', duration: '2分钟', pillar: 'muscle', iconKey: 'strength', completed: false },
+      { id: 'h6', title: '替换含糖饮料', description: '改喝无糖茶或气泡水', duration: '全天', pillar: 'body', iconKey: 'hydration', completed: false }
     ]
   },
   {
     day: 3,
     date: '第3天',
     habits: [
-      { id: 'h7', title: '20-20-20 护眼', description: '每20分钟看6米外20秒', duration: '1分钟', pillar: 'hair', completed: false },
-      { id: 'h8', title: '弹力带划船', description: '15次×2组', duration: '3分钟', pillar: 'muscle', completed: false },
-      { id: 'h9', title: '增加蔬菜比例', description: '午餐加一份绿叶菜', duration: '全天', pillar: 'body', completed: false }
+      { id: 'h7', title: '20-20-20 护眼', description: '每20分钟看6米外20秒', duration: '1分钟', pillar: 'hair', iconKey: 'eye', completed: false },
+      { id: 'h8', title: '弹力带划船', description: '15次×2组', duration: '3分钟', pillar: 'muscle', iconKey: 'strength', completed: false },
+      { id: 'h9', title: '增加蔬菜比例', description: '午餐加一份绿叶菜', duration: '全天', pillar: 'body', iconKey: 'nutrition', completed: false }
     ]
   }
 ]
 
 export const DEFAULT_REMINDERS: ReminderItem[] = [
-  { id: 'r1', title: '起身活动', description: '每45分钟提醒一次', time: '09:00-18:00', enabled: true, icon: '🚶' },
-  { id: 'r2', title: '20-20-20 护眼', description: '缓解屏幕眼疲劳', time: '每20分钟', enabled: true, icon: '👁️' },
-  { id: 'r3', title: '睡眠提醒', description: '23:00 准备入睡', time: '23:00', enabled: false, icon: '🌙' },
-  { id: 'r4', title: '计划打卡', description: '每日习惯完成提醒', time: '21:00', enabled: false, icon: '✅' }
+  { id: 'r1', title: '起身活动', description: '每45分钟提醒一次', time: '09:00-18:00', enabled: true, iconKey: 'walk' },
+  { id: 'r2', title: '20-20-20 护眼', description: '缓解屏幕眼疲劳', time: '每20分钟', enabled: true, iconKey: 'eye' },
+  { id: 'r3', title: '睡眠提醒', description: '23:00 准备入睡', time: '23:00', enabled: false, iconKey: 'sleep' },
+  { id: 'r4', title: '计划打卡', description: '每日习惯完成提醒', time: '21:00', enabled: false, iconKey: 'checklist' }
 ]
 
 export const QUIZ_QUESTIONS = [
@@ -369,16 +370,20 @@ export function toggleHabitComplete(dayIndex: number, habitId: string): PlanDay[
 }
 
 const KEYWORD_HABIT_MAP: Record<string, Omit<PlanHabit, 'id' | 'completed'>> = {
-  '早睡': { title: '23:30 前放下手机', description: '设置睡眠闹钟，减少蓝光刺激', duration: '1分钟', pillar: 'body' },
-  '23:30放下手机': { title: '23:30 前放下手机', description: '设置睡眠闹钟，减少蓝光刺激', duration: '1分钟', pillar: 'body' },
-  '涂米诺地尔': { title: '涂米诺地尔', description: '早晚涂抹，轻按摩头皮 3 分钟', duration: '3分钟', pillar: 'hair' },
-  '起身活动': { title: '45分钟起身拉伸', description: '颈肩环绕 + 站立 30 秒', duration: '3分钟', pillar: 'muscle' },
-  '少熬夜': { title: '23:30 前入睡', description: '保障头发与代谢恢复', duration: '1分钟', pillar: 'body' },
-  '护眼休息': { title: '20-20-20 护眼', description: '每 20 分钟看 6 米外 20 秒', duration: '1分钟', pillar: 'hair' },
-  '体态拉伸': { title: '5 分钟体态矫正', description: '圆肩前倾拉伸', duration: '5分钟', pillar: 'muscle' },
-  '6000步': { title: '6000 步目标', description: '工间散步或楼梯代替电梯', duration: '全天', pillar: 'body' },
-  '控制体重': { title: '控制精制碳水', description: '午餐减少精制碳水比例', duration: '全天', pillar: 'body' },
-  '补充维生素D': { title: '补充维生素 D', description: '每日 1 粒或晒太阳 15 分钟', duration: '1分钟', pillar: 'body' }
+  '早睡': { title: '23:30 前放下手机', description: '设置睡眠闹钟，减少蓝光刺激', duration: '1分钟', pillar: 'body', iconKey: 'phoneOff' },
+  '23:30放下手机': { title: '23:30 前放下手机', description: '设置睡眠闹钟，减少蓝光刺激', duration: '1分钟', pillar: 'body', iconKey: 'phoneOff' },
+  '涂米诺地尔': { title: '涂米诺地尔', description: '早晚涂抹，轻按摩头皮 3 分钟', duration: '3分钟', pillar: 'hair', iconKey: 'scalp' },
+  '起身活动': { title: '45分钟起身拉伸', description: '颈肩环绕 + 站立 30 秒', duration: '3分钟', pillar: 'muscle', iconKey: 'stretch' },
+  '少熬夜': { title: '23:30 前入睡', description: '保障头发与代谢恢复', duration: '1分钟', pillar: 'body', iconKey: 'phoneOff' },
+  '护眼休息': { title: '20-20-20 护眼', description: '每 20 分钟看 6 米外 20 秒', duration: '1分钟', pillar: 'hair', iconKey: 'eye' },
+  '体态拉伸': { title: '5 分钟体态矫正', description: '圆肩前倾拉伸', duration: '5分钟', pillar: 'muscle', iconKey: 'stretch' },
+  '6000步': { title: '6000 步目标', description: '工间散步或楼梯代替电梯', duration: '全天', pillar: 'body', iconKey: 'walk' },
+  '控制体重': { title: '控制精制碳水', description: '午餐减少精制碳水比例', duration: '全天', pillar: 'body', iconKey: 'nutrition' },
+  '补充维生素D': { title: '补充维生素 D', description: '每日 1 粒或晒太阳 15 分钟', duration: '1分钟', pillar: 'body', iconKey: 'vitamin' },
+  '按时吃饭': { title: '按时吃饭', description: '规律三餐，避免空腹编程', duration: '全天', pillar: 'body', iconKey: 'nutrition' },
+  '多喝水': { title: '多喝水', description: '每日 8 杯水，减少含糖饮料', duration: '全天', pillar: 'body', iconKey: 'hydration' },
+  '补充蛋白': { title: '补充蛋白', description: '午餐增加优质蛋白来源', duration: '全天', pillar: 'body', iconKey: 'nutrition' },
+  '23点停止进食': { title: '23点停止进食', description: '睡前 2 小时不再进食', duration: '1分钟', pillar: 'body', iconKey: 'phoneOff' }
 }
 
 function habitFromKeyword(keyword: string, index: number): PlanHabit {
@@ -386,12 +391,18 @@ function habitFromKeyword(keyword: string, index: number): PlanHabit {
   if (mapped) {
     return { id: `kw-${index}-${keyword}`, ...mapped, completed: false }
   }
-  return {
-    id: `kw-${index}-${keyword}`,
+  const iconKey = getKeywordIconKey(keyword)
+  const draft = {
     title: keyword,
     description: '每日微习惯，坚持比强度更重要',
+    pillar: 'body' as const
+  }
+  return {
+    id: `kw-${index}-${keyword}`,
+    ...draft,
     duration: '3分钟',
     pillar: 'body',
+    iconKey: iconKey ?? getHabitIconKey({ ...draft, pillar: 'body' }),
     completed: false
   }
 }

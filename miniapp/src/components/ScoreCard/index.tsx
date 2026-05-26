@@ -1,8 +1,10 @@
 import { View, Text } from '@tarojs/components'
+import IconBadge from '@/components/IconBadge'
+import type { AppIconKey } from '@/constants/icons'
 import './index.scss'
 
 interface ScoreCardProps {
-  icon: string
+  iconKey: AppIconKey
   label: string
   score: number
   summary: string
@@ -11,7 +13,7 @@ interface ScoreCardProps {
 }
 
 export default function ScoreCard({
-  icon,
+  iconKey,
   label,
   score,
   summary,
@@ -24,7 +26,7 @@ export default function ScoreCard({
   return (
     <View className='score-card' onClick={onClick}>
       <View className='score-card__header'>
-        <Text className='score-card__icon'>{icon}</Text>
+        <IconBadge iconKey={iconKey} size='md' className='score-card__icon' />
         <View className='score-card__info'>
           <Text className='score-card__label'>{label}</Text>
           <Text className='score-card__level' style={{ color }}>{level}</Text>

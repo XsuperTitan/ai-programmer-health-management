@@ -54,14 +54,14 @@ export default function ReportPage() {
       <Text className='section-title'>选择上传方式</Text>
 
       <SelectionCard
-        icon='📷'
+        iconKey='camera'
         label='拍照上传'
         desc='直接拍摄纸质报告'
         selected={mode === 'camera'}
         onClick={() => handleChoose('camera')}
       />
       <SelectionCard
-        icon='🖼️'
+        iconKey='album'
         label='从相册选择'
         desc='选择已有照片或截图'
         selected={mode === 'album'}

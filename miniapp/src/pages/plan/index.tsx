@@ -2,12 +2,14 @@ import { View, Text } from '@tarojs/components'
 import Taro, { useDidShow } from '@tarojs/taro'
 import { useState } from 'react'
 import SelectionCard from '@/components/SelectionCard'
+import IconBadge from '@/components/IconBadge'
 import ProgressBar from '@/components/ProgressBar'
 import ChalkBackground from '@/components/ChalkBackground'
 import ProductRecommendSection from '@/components/ProductRecommendSection'
 import { getSession, getUser, toggleHabitComplete } from '@/services/mock'
 import { getTabChalkMessages } from '@/services/chalkMessages'
 import { syncTabBar } from '@/utils/tabBar'
+import { getHabitIconKey } from '@/constants/icons'
 import type { PlanDay, ChalkMessage, UserProfile } from '@/types'
 import './index.scss'
 
@@ -57,14 +59,14 @@ export default function PlanPage() {
           className='plan-page__empty card'
           onClick={() => Taro.navigateTo({ url: '/pages/quiz/index' })}
         >
-          <Text className='plan-page__empty-icon'>🎯</Text>
+          <IconBadge iconKey='quiz' size='lg' className='plan-page__empty-icon' />
           <Text className='plan-page__empty-text'>去填写问卷</Text>
         </View>
         <View
           className='plan-page__empty card plan-page__empty--secondary'
           onClick={() => Taro.switchTab({ url: '/pages/customize/index' })}
         >
-          <Text className='plan-page__empty-icon'>✏️</Text>
+          <IconBadge iconKey='customize' size='lg' className='plan-page__empty-icon' />
           <Text className='plan-page__empty-text'>去定制改善关键词</Text>
         </View>
       </View>
@@ -102,10 +104,7 @@ export default function PlanPage() {
           {currentDay.habits.map(habit => (
             <View key={habit.id} className='plan-page__habit'>
               <SelectionCard
-                icon={
-                  habit.pillar === 'hair' ? '💇' :
-                  habit.pillar === 'muscle' ? '💪' : '🫀'
-                }
+                iconKey={getHabitIconKey(habit)}
                 label={habit.title}
                 desc={`${PILLAR_LABEL[habit.pillar]} · ${habit.duration} · ${habit.description}`}
                 selected={habit.completed}

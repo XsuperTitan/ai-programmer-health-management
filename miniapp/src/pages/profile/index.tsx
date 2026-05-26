@@ -122,13 +122,13 @@ export default function ProfilePage() {
 
       <Text className='section-title'>更多</Text>
       <NavCard
-        icon='📄'
+        iconKey='document'
         title='隐私政策与免责声明'
         subtitle='了解数据使用与健康建议边界'
         onClick={() => Taro.navigateTo({ url: '/pages/disclaimer/index' })}
       />
       <NavCard
-        icon='🔔'
+        iconKey='bell'
         title='提醒设置'
         subtitle='管理健康提醒偏好'
         onClick={() => Taro.navigateTo({ url: '/pages/reminders/index' })}
